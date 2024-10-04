@@ -2,7 +2,7 @@
 
 ## USE
 ```bash
-bash diglist.sh <file with whitespace-separated IPs or domain names> <DNS record type`
+bash diglist.sh <file with whitespace-separated IPs or domain names> <DNS record type>`
 ```
 ### OR
 Let dig list prompt you for the file and record type:
