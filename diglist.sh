@@ -24,12 +24,13 @@ else
 	record=$2
 fi
 
-echo -e ":-- Digging \033[32m$ipfile\033[0m for \033[32m$record\033[0m types..."
+echo -e ":-- Digging \033[32m$ipfile\033[0m for \033[32m$record\033[0m record types..."
+echo ""
 
 for line in $(cat $ipfile); do
         echo -e "_________________________ \033[32m$line\033[0m _________________________"
 
-result=$(dig $line $record & sleep 0.5)
+	result=$(dig $line $record & sleep 0.5)
 	echo -e ":--\033[32mRESULT:\033[0m $result"	
 
 done
