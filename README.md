@@ -10,8 +10,8 @@ Let dig list prompt you for the file and record type:
 :-- DNS RECORDS --:
 
 :-- Enter a file to use which containes new line separated IP addresses and/ or hostnames:
-test
+domains.txt
 :-- What record type are you looking for? (ex: 'txt'):
 any
-:-- Digging test for any types...
+:-- Digging domains.txt for any record types...
 ```
