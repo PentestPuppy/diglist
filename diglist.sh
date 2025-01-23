@@ -41,7 +41,7 @@ for line in $(cat $ipfile); do
 	else
 		result=$(dig $line\.$root $record)
 		echo -e ":--\033[32m RESULT:\033[0m $result" \
-		#&& sleep 0.1
+		&& sleep 0.1
 	fi
 done
 
