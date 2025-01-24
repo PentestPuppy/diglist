@@ -9,9 +9,9 @@ echo ""
 # Variable Declaration:
 if [[ -z "$1" ]]; then
 	echo ":-- Enter a file to use which containes new line separated IP addresses and/ or hostnames: "
-	read -a ipfile
+	read -a file
 else
-	ipfile=$1
+	file=$1
 fi
 
 if [[ -z "$2" ]]; then
@@ -23,23 +23,34 @@ fi
 
 # Check for what type of record they want:
 if [[ -z "$3" ]]; then
-	echo ":-- What record type are you looking for? (ex: 'txt'): "
+	echo ":-- What record type are you looking for? (ex: txt, all, a, n, aaaa): "
 	read -a record
 else
 	record=$3
 fi
 
-echo -e ":-- Digging \033[32m$ipfile\033[0m for \033[32m$record\033[0m record types..."
+echo -e ":-- Digging \033[32m$file\033[0m for \033[32m$record\033[0m record types..."
 echo ""
 
-for line in $(cat $ipfile); do
-        echo -e "_________________________ \033[32m$line.$root\033[0m _________________________"
-
-	# Check for results first
-	if [[ $(dig +short $line\.$root $record | wc -c) -eq 0 ]]; then
-		echo -e ":--\033[31m NO RESULTS for $line\033[0m"
+for line in $(cat $file); do
+	# If current item is not IP address format:
+	if [[ $(echo $line | grep -E '([[:digit:]]{1,3}\.){3}[[:digit:]]{1,3}' -c) -eq 0 ]]; then
+		# Does the current item already have tld format?
+		if [[ $(echo $line | grep -E '[[:alnum:]]{2,}\.[[:alnum:]]{2,}' -c) -ne 0 ]]; then
+			target=$line
+		else
+			target=$(echo $line\.$root)
+		fi
 	else
-		result=$(dig $line\.$root $record)
+		target=$line
+	fi
+
+        echo -e "_________________________ \033[32m$target\033[0m _________________________"
+	# Dig for domain name but check for results first:
+	if [[ $(dig +short $target $record | wc -c) -eq 0 ]]; then
+		echo -e ":--\033[31m NO RESULTS for $target\033[0m"
+	else
+		result=$(dig $target $record)
 		echo -e ":--\033[32m RESULT:\033[0m $result" \
 		&& sleep 0.1
 	fi
