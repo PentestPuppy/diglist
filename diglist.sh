@@ -42,7 +42,7 @@ for line in $(cat $file); do
 			target=$(echo $line\.$root)
 		fi
 	else
-		target=$line
+		target="-x $line" # Little bit hacky lol
 	fi
 
         echo -e "_________________________ \033[32m$target\033[0m _________________________"
