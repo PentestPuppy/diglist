@@ -30,7 +30,7 @@ echo ""
 for line in $(cat $ipfile); do
         echo -e "_________________________ \033[32m$line\033[0m _________________________"
 
-	result=$(dig $line $record & sleep 0.5)
+	result=$(dig $line $record && sleep 0.5)
 	echo -e ":--\033[32mRESULT:\033[0m $result"	
 
 done
