@@ -5,7 +5,7 @@ If you want to dig a single target... then just use dig lol.
 
 ## USE
 ```bash
-bash diglist.sh <file with whitespace-separated IPs or domain names> <root domain> <DNS record type>
+bash diglist.sh <target list> <record type>
 ```
 
 ### OR
@@ -15,9 +15,9 @@ Let diglist prompt you for the file and record type:
 
                      :-- DIGLIST.SH: Gather DNS Records for multiple targets --:
 
-:-- Enter a file to use which contains newline separated IP addresses and/ or hostnames:
+:-- Enter a file to use which contains newline-separated IP addresses and/ or hostnames:
 digme
-:--  What record type are you looking for? (ex: txt, any, a, n, aaaa):
+:--  What record type are you looking for? (ex: txt, any, a, n, aaaa, etc...):
 any
 :-- Digging digme for any record types...
 
@@ -82,3 +82,5 @@ _________________________ -x 8.8.8.8 _________________________
 :-- RESULT:
 ...
 ```
+> [!Note]
+> For IP addresses, `diglist.sh` will use dig's `-x` flag to find PTR record types.
