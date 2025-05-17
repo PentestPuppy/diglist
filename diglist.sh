@@ -8,7 +8,7 @@ echo ""
 
 # Variable Declaration:
 if [[ -z "$1" ]]; then
-	echo -e ":--\033[1;33m Enter a file to use which contains newline separated IP addresses and/ or hostnames: \033[0m"
+	echo -e ":--\033[1;33m Enter a file to use which contains newline-separated IP addresses and/ or hostnames: \033[0m"
 	read -a file
 else
 	if [[ $(echo $1 | grep -e '-h\|--help' -c) -ne 0 ]]; then
@@ -26,7 +26,7 @@ else
 fi
 
 if [[ -z "$2" ]]; then
-	echo -e ":--\033[1;33m  What record type are you looking for? (ex: txt, any, a, n, aaaa): \033[0m"
+	echo -e ":--\033[1;33m  What record type are you looking for? (ex: txt, any, a, n, aaaa, etc...): \033[0m"
 	read -a record
 else
 	record=$2
